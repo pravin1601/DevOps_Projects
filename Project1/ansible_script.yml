@@ -1,0 +1,16 @@
+#I have configured Key based authincation between master and slave machine already
+# hosts: test is slave machine
+
+---
+- hosts: test
+  name: docker install playbook
+  become: true
+  tasks:
+    - name: docker install
+      yum:
+        name: docker
+        state: present
+    - name: start docker
+      service:
+        name: docker
+        state: started
